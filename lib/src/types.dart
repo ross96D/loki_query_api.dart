@@ -50,6 +50,15 @@ final class LokiStream {
   String toString() {
     return "${labels.join(" ")}\n${logs.join('\n')}";
   }
+
+  String? getLabel(String labelName) {
+    for (final label in labels) {
+      if (label.name == labelName) {
+        return label.value;
+      }
+    }
+    return null;
+  }
 }
 
 final class LokiLabel {
@@ -122,7 +131,6 @@ final class LokiTimestampDate extends LokiTimestamp {
 
   @override
   String toQueryParamValue() {
-    print("AAAA: ${value.microsecondsSinceEpoch}000");
     return '${value.microsecondsSinceEpoch}000';
   }
 }
